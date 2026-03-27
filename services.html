@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apprenant2.0 - Services</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Montserrat', sans-serif; }
+
+        /* HEADER PAGE */
+        .page-header {
+            background: linear-gradient(135deg, #1b3a6b, #2563a8);
+            padding: 140px 60px 70px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 44px;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+
+        .page-header h1 span { color: #64b5f6; }
+
+        .page-header p {
+            font-size: 17px;
+            color: #c8dff5;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* SERVICES PRINCIPAUX */
+        #services-principaux {
+            background-color: #ffffff;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .service-card {
+            border: 2px solid #e8f0fe;
+            border-radius: 15px;
+            padding: 35px 28px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #1b3a6b, #64b5f6);
+        }
+
+        .service-card:hover {
+            border-color: #64b5f6;
+            transform: translateY(-6px);
+            box-shadow: 0 15px 40px rgba(27,58,107,0.12);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #1b3a6b, #64b5f6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+            color: #ffffff;
+        }
+
+        .service-card h3 {
+            font-size: 18px;
+            color: #1b3a6b;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            font-size: 14px;
+            color: #777;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .service-liste {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .service-liste li {
+            font-size: 13px;
+            color: #555;
+            padding: 5px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .service-liste li::before {
+            content: '✓';
+            color: #64b5f6;
+            font-weight: 900;
+        }
+
+        /* PROCESSUS */
+        #processus {
+            background-color: #f0f4f8;
+        }
+
+        .processus-steps {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .processus-step {
+            flex: 1;
+            min-width: 180px;
+            max-width: 220px;
+            text-align: center;
+            position: relative;
+        }
+
+        .processus-step::after {
+            content: '→';
+            position: absolute;
+            right: -20px;
+            top: 25px;
+            font-size: 24px;
+            color: #64b5f6;
+            font-weight: 900;
+        }
+
+        .processus-step:last-child::after {
+            display: none;
+        }
+
+        .step-numero {
+            width: 55px;
+            height: 55px;
+            background-color: #1b3a6b;
+            color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 900;
+            margin: 0 auto 15px;
+        }
+
+        .processus-step h4 {
+            font-size: 15px;
+            color: #1b3a6b;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .processus-step p {
+            font-size: 13px;
+            color: #777;
+            line-height: 1.6;
+        }
+
+        /* FAQ */
+        #faq {
+            background-color: #ffffff;
+        }
+
+        .faq-liste {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border: 1px solid #e8f0fe;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            background-color: #f8faff;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: #e8f0fe;
+        }
+
+        .faq-question h4 {
+            font-size: 15px;
+            color: #1b3a6b;
+            font-weight: 600;
+        }
+
+        .faq-question i {
+            color: #64b5f6;
+            transition: transform 0.3s;
+        }
+
+        .faq-reponse {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s;
+        }
+
+        .faq-reponse.actif {
+            max-height: 200px;
+            padding: 15px 25px 20px;
+        }
+
+        .faq-reponse p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 768px) {
+            .page-header { padding: 120px 20px 50px; }
+            .page-header h1 { font-size: 30px; }
+            .services-grid { grid-template-columns: 1fr; }
+            .processus-step::after { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <a href="index.html" class="logo">Apprenant<span>2.0</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="services.html" class="active">Services</a></li>
+            <li><a href="produits.html">Produits</a></li>
+            <li><a href="contact.html" class="btn-nav">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- HEADER PAGE -->
+    <div class="page-header">
+        <h1>Nos <span>Services</span></h1>
+        <p>Des services digitaux adaptés pour répondre à tous vos besoins professionnels</p>
+    </div>
+
+    <!-- SERVICES PRINCIPAUX -->
+    <section id="services-principaux">
+        <div class="section-titre">
+            <h2>Ce que nous <span>proposons</span></h2>
+            <div class="ligne-titre"></div>
+            <p>Une gamme complète de services digitaux de qualité</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-download"></i></div>
+                <h3>Produits Téléchargeables</h3>
+                <p>Accédez instantanément à nos ressources numériques après commande.</p>
+                <ul class="service-liste">
+                    <li>Livraison immédiate</li>
+                    <li>Fichiers haute qualité</li>
+                    <li>Licence d'utilisation garantie</li>
+                    <li>Mises à jour gratuites</li>
+                </ul>
+                <a href="produits.html" class="btn-primary">Voir les produits</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-graduation-cap"></i></div>
+                <h3>Formations en Ligne</h3>
+                <p>Développez vos compétences avec nos formations pratiques et accessibles.</p>
+                <ul class="service-liste">
+                    <li>Contenu vidéo HD</li>
+                    <li>Accès à vie</li>
+                    <li>Communauté d'apprenants</li>
+                </ul>
+                <a href="produits.html" class="btn-primary">Voir les formations</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class="fas fa-paint-brush"></i></div>
+                <h3>Ressources Créatives</h3>
+                <p>Templates et modèles sources  pour vos projets créatifs.</p>
+                <ul class="service-liste">
+                    <li>Fichiers modifiables</li>
+                    <li>Compatible tous logiciels</li>
+                    <li>Usage commercial autorisé</li>
+                </ul>
+                <a href="produits.html" class="btn-primary">Voir les ressources</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESSUS -->
+    <section id="processus">
+        <div class="section-titre">
+            <h2>Comment ça <span>marche</span> ?</h2>
+            <div class="ligne-titre"></div>
+            <p>Un processus simple et rapide en 4 étapes</p>
+        </div>
+        <div class="processus-steps">
+            <div class="processus-step">
+                <div class="step-numero">1</div>
+                <h4>Choisissez</h4>
+                <p>Parcourez notre catalogue et sélectionnez votre produit</p>
+            </div>
+            <div class="processus-step">
+                <div class="step-numero">2</div>
+                <h4>Commandez</h4>
+                <p>Remplissez le formulaire de commande en quelques secondes</p>
+            </div>
+            <div class="processus-step">
+                <div class="step-numero">3</div>
+                <h4>Payez</h4>
+                <p>Finalisez votre paiement via WhatsApp avec notre vendeur</p>
+            </div>
+            <div class="processus-step">
+                <div class="step-numero">4</div>
+                <h4>Recevez</h4>
+                <p>Téléchargez votre produit instantanément après paiement</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+        <div class="section-titre">
+            <h2>Questions <span>fréquentes</span></h2>
+            <div class="ligne-titre"></div>
+        </div>
+        <div class="faq-liste">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>Comment se passe la livraison ?</h4>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-reponse">
+                    <p>Après confirmation du paiement via WhatsApp, vous recevez immédiatement le lien de téléchargement de votre produit par message.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>Quels sont les modes de paiement acceptés ?</h4>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-reponse">
+                    <p>Nous acceptons les paiements via Mobile Money (Orange Money, MTN Money, Wave).</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>Puis-je obtenir un remboursement ?</h4>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-reponse">
+                    <p>Oui, nous offrons une garantie de remboursement de 48 heures si vous n'êtes pas satisfait de votre achat.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h4>Les produits sont-ils utilisables commercialement ?</h4>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-reponse">
+                    <p>Chaque produit précise sa licence d'utilisation. La plupart de nos produits incluent une licence commerciale.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-contenu">
+            <div class="footer-col">
+                <h4><Apprenant2 class="0"></Apprenant2></h4>
+                <p>La boutique de produits digitaux des apprenants.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <a href="index.html">Accueil</a>
+                <a href="services.html">Services</a>
+                <a href="produits.html">Produits</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p><i class="fas fa-envelope"></i> wayenamohamedouattara@gmail.com</p>
+                <p><i class="fas fa-phone"></i> +225 07 20 44 33 05</p>
+                <a href="https://wa.me/2250720443305" target="_blank">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Apprenant2.0 . Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

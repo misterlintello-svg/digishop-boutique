@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apprenant2.0 - Commander</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Montserrat', sans-serif; }
+
+        .page-header {
+            background: linear-gradient(135deg, #1b3a6b, #2563a8);
+            padding: 140px 60px 70px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 44px;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+
+        .page-header h1 span { color: #64b5f6; }
+
+        .page-header p {
+            font-size: 17px;
+            color: #c8dff5;
+        }
+
+        /* COMMANDE */
+        #commande {
+            background-color: #f0f4f8;
+        }
+
+        .commande-contenu {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* RÉSUMÉ COMMANDE */
+        .commande-resume {
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(27,58,107,0.08);
+            height: fit-content;
+        }
+
+        .commande-resume h3 {
+            font-size: 18px;
+            color: #1b3a6b;
+            margin-bottom: 20px;
+            font-weight: 700;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e8f0fe;
+        }
+
+        .resume-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f4f8;
+            font-size: 14px;
+        }
+
+        .resume-item span:first-child {
+            color: #777;
+        }
+
+        .resume-item span:last-child {
+            color: #1b3a6b;
+            font-weight: 700;
+        }
+
+        .resume-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0 0;
+            font-size: 18px;
+            font-weight: 900;
+            color: #1b3a6b;
+        }
+
+        .whatsapp-box {
+            background-color: #f0fff4;
+            border: 2px solid #25d366;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .whatsapp-box p {
+            font-size: 13px;
+            color: #555;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        /* FORMULAIRE */
+        .commande-form {
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 35px;
+            box-shadow: 0 5px 20px rgba(27,58,107,0.08);
+        }
+
+        .commande-form h3 {
+            font-size: 18px;
+            color: #1b3a6b;
+            margin-bottom: 25px;
+            font-weight: 700;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e8f0fe;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .etapes {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .etape {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .etape.actif {
+            background-color: #1b3a6b;
+            color: #ffffff;
+        }
+
+        .etape.inactif {
+            background-color: #f0f4f8;
+            color: #aaa;
+        }
+
+        .etape.fait {
+            background-color: #64b5f6;
+            color: #ffffff;
+        }
+
+        @media (max-width: 768px) {
+            .page-header { padding: 120px 20px 50px; }
+            .page-header h1 { font-size: 28px; }
+            .commande-contenu { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <a href="index.html" class="logo">Apprenant2.0</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="produits.html">Produits</a></li>
+            <li><a href="contact.html" class="btn-nav">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- HEADER PAGE -->
+    <div class="page-header">
+        <h1>Votre <span>Commande</span></h1>
+        <p>Remplissez le formulaire pour finaliser votre achat</p>
+    </div>
+
+    <!-- COMMANDE -->
+    <section id="commande">
+        <div class="commande-contenu">
+
+            <!-- RÉSUMÉ -->
+            <div class="commande-resume">
+                <h3>📦 Résumé de la commande</h3>
+                <div class="resume-item">
+                    <span>Produit</span>
+                    <span id="resume-produit">—</span>
+                </div>
+                <div class="resume-item">
+                    <span>Prix unitaire</span>
+                    <span id="resume-prix">—</span>
+                </div>
+                <div class="resume-item">
+                    <span>Livraison</span>
+                    <span style="color:#25d366;">Instantanée ✓</span>
+                </div>
+                <div class="resume-total">
+                    <span>Total</span>
+                    <span id="resume-total">—</span>
+                </div>
+
+                <div class="whatsapp-box">
+                    <p>Après soumission du formulaire, vous serez redirigé vers WhatsApp pour finaliser votre paiement avec un vendeur.</p>
+                    <div style="display:flex; align-items:center; justify-content:center; gap:8px; color:#25d366; font-weight:700;">
+                        <i class="fab fa-whatsapp" style="font-size:22px;"></i>
+                        Paiement via WhatsApp
+                    </div>
+                </div>
+            </div>
+
+            <!-- FORMULAIRE -->
+            <div class="commande-form">
+                <div class="etapes">
+                    <div class="etape actif">1. Informations</div>
+                    <div class="etape inactif">2. Confirmation</div>
+                    <div class="etape inactif">3. Paiement</div>
+                </div>
+
+                <h3>📝 Vos informations</h3>
+
+                <div class="form-row">
+                    <div class="form-groupe">
+                        <label>Nom complet *</label>
+                        <input type="text" id="nom" placeholder="Votre nom">
+                    </div>
+                    <div class="form-groupe">
+                        <label>Prénom *</label>
+                        <input type="text" id="prenom" placeholder="Votre prénom">
+                    </div>
+                </div>
+
+                <div class="form-groupe">
+                    <label>Email *</label>
+                    <input type="email" id="email" placeholder="votre@email.com">
+                </div>
+
+                <div class="form-groupe">
+                    <label>Numéro WhatsApp *</label>
+                    <input type="tel" id="whatsapp" placeholder="+225 00 00 00 00">
+                </div>
+
+                <div class="form-groupe">
+                    <label>Produit commandé</label>
+                    <input type="text" id="produit-input" readonly
+                        style="background-color:#f0f4f8; cursor:not-allowed;">
+                </div>
+
+                <div class="form-groupe">
+                    <label>Mode de paiement souhaité</label>
+                    <select id="paiement">
+                        <option value="">Choisissez un mode</option>
+                        <option value="orange-money">Orange Money</option>
+                        <option value="mtn-money">MTN Money</option>
+                        <option value="wave">Wave</option>
+                        <option value="virement">Virement bancaire</option>
+                    </select>
+                </div>
+
+                <div class="form-groupe">
+                    <label>Message (optionnel)</label>
+                    <textarea id="message" rows="3"
+                        placeholder="Précisions sur votre commande..."></textarea>
+                </div>
+
+                <button class="btn-primary" id="btn-commander"
+                    style="width:100%; font-size:16px; padding:16px;">
+                    <i class="fas fa-paper-plane"></i>
+                    Confirmer et passer au paiement
+                </button>
+                <p id="erreur-commande"
+                    style="color:red; font-size:13px; margin-top:10px; text-align:center;">
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-contenu">
+            <div class="footer-col">
+                <h4>Apprenant2.0</h4>
+                <p>La boutique de produits digitaux pour les apprenants.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigation</h4>
+                <a href="index.html">Accueil</a>
+                <a href="services.html">Services</a>
+                <a href="produits.html">Produits</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p><i class="fas fa-envelope"></i> wayenamohamedouattara@gmail.com</p>
+                <p><i class="fas fa-phone"></i> +225 07 20 44 33 05</p>
+                <a href="https://wa.me/2250720443305" target="_blank">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Apprenant2.0. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
